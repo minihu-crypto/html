@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 自定义样式 -->
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            background-image: url("../img/background.jpg");
+            background-attachment: fixed;
+        }
+
+        button.class1 {
+            background-image: url("./img/button.png");
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+        }
+
+        .gray_title {
+            background-color: gainsboro;
+            border-color: black;
+            width: 25%;
+            border-radius: 30px;
+            margin: auto;
+            text-align: center;
+            padding: 30px 15px 30px 15px;
+            font-weight: bold;
+        }
+
+        .border {
+            background-color: white;
+            border-color: rgba(157, 175, 192, 0.692);
+            border-style: solid;
+            border-radius: 25px;
+            height: 650px;
+            width: 800;
+        }
+
+        .img_title {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .img_title2 {
+            text-align: center;
+            font-weight: bold;
+            font-family: "Audiowide", sans-serif;
+        }
+    </style>
+    <!-- 字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <!-- 引入bulma样式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <!-- 引入bootstrap样式 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- 引入index.js -->
+    <script src="js/demo.js"  type="text/javascript"></script>
+    <title>隐私计算平台</title>
+</head>
+
+<body>
+    <br>
+    <br>
+    <h1 class="gray_title">隐私计算平台</h1>
+    <br><br>
+    <div class="columns is-desktop  is-vcentered">
+        <div class="column is-2 is-center"></div>
+        <div class="column is-2 is-center is-multiline">
+                <button id="button1" class="button is-vcentered is-focused is-info is-light is-large is-fullwidth">关键技术</button>
+                
+                <button id="button2" class="button is-vcentered is-focused is-info is-light is-large is-fullwidth">平台部署</button>
+                
+                <button id="button3" class="button is-vcentered is-focused is-info is-light is-large is-fullwidth">应用案例</button>
+        </div>
+        <div class="column is-1 is-center"></div>
+        <div class="column is-6 border" id="system" style="display:inline;max-height:500;">
+            <div class="columns">
+                <div class="column is-8">
+                    <h2 class="img_title2">系统架构</h2>
+                </div>
+                <div class="column">
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-1"></div>
+                <div class="column is-10">
+                    <img src="./img/系统架构.png" style="margin: auto;">
+                </div>
+                <div class="column is-1"></div>
+            </div>
+        </div>
+        <div class="column is-6 border" id="key_tech" style="display:none;">
+            <div class="columns">
+                <div class="column is-8">
+                    <h2 class="img_title2">关键技术</h2>
+                </div>
+                <div class="column">
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-4"> 
+                    <img src="./img/1.png" class="img_little">
+                    <p class="img_title2">可信硬件</p>
+                    <img src="./img/4.png" class="img_little">
+                    <p class="img_title2">混淆电路</p>
+                </div>
+                <div class="column is-4">
+                    <img src="./img/2.png" class="img_little">
+                    <p class="img_title2">同态加密</p>
+                    <img src="./img/5.png" class="img_little">
+                    <p class="img_title2">零知识证明</p>
+                </div>
+                <div class="column is-4">
+                    <img src="./img/3.png" class="img_little">
+                    <p class="img_title2">隐匿查询</p>
+                    <img src="./img/6.png" class="img_little">
+                    <p class="img_title2">隐私保护求交</p>
+                </div>
+            </div>
+        </div>
+        <div class="column is-6 border" id="platform" style="display:none;">
+            <div class="columns">
+                <div class="column is-8">
+                    <h2 class="img_title2">平台部署</h2>
+                </div>
+                <div class="column">
+                </div>
+            </div>
+            <br><br><br>
+            <img src="./img/平台部署.png" >
+        </div>
+        <div class="column is-6 border" id="instance" style="display:none;">
+            <div class="columns">
+                <div class="column is-8">
+                    <h2 class="img_title2">应用案例</h2>
+                </div>
+                <div class="column">
+                    <button id="button4" class="button is-focused is-success is-light ">demo</button>
+                </div>
+            </div>
+            <br><br>
+            <p>银行：持有一个“高价值”客户名单，想进一步拓展业务，寻找和这些“高价值”客户的有紧密联系的“次高价值”客户。</p>
+            <p>电信运营商：持有所有用户间相互通信联系的信息：频率、时长。</p><br>
+            <img src="./img/应用案例.png" >
+        </div>
+        <div class="column is-1 is-center"></div>
+    </div>
+</body>
+
+</html>
