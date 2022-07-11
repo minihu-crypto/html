@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>隐私计算平台</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
+	<!-- 引入 vintage 主题 -->
+	<script src="theme/infographic.js"></script>
+	<script src="theme/vintage.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	<script src="js/demo_back.js" type="text/javascript"></script>
+</head>
+
+<body style="height: 100%;">
+	<div id="index_box">
+		<div class="index_header">
+			<div class="h_left">
+			</div>
+			<div class="h_center">
+				隐私计算平台演示
+			</div>
+			<div class="h_right">
+			</div>
+		</div>
+		<!--两方提示-->
+		<div class="columns is-centered ">
+			<div class="column is-4">
+				<h1 class="label" style="font-size:25px;color: ghostwhite;" align="center">运营商</h1>
+			</div>
+			<div class="column is-4"></div>
+			<div class="column is-4">
+				<h1 class="label" style="font-size:25px;color: ghostwhite;" align="center">银行</h1>
+			</div>
+		</div>
+
+		<!-- 用户上传相关文件 -->
+		<div class="columns is-centered">
+			<div class="column is-1"></div>
+			<!--左边文件上传框-->
+			<div id="file1" class="file has-name is-2 is-centered">
+				<label class="file-label">
+					<input class="file-input" type="file" name="resume">
+					<span class="file-cta is-info">
+						上传关联数据图
+					</span>
+					<span class="file-name" style="background-color: rgba(199, 235, 233, 0.932);">
+						graph.txt
+					</span>
+				</label>
+			</div>
+			<div class="column is-6"></div>
+			<!--右边文件上传框-->
+			<div id="file1" class="file has-name is-2 is-centered">
+				<label class="file-label">
+					<input class="file-input" type="file" name="resume">
+					<span class="file-cta is-info">
+						上传高价值用户
+					</span>
+					<span class="file-name" style="background-color: hsla(177, 47%, 85%, 0.932);">
+						list.txt
+					</span>
+				</label>
+			</div>
+			<div class="column is-1"></div>
+		</div>
+		<!--改变文件框-->
+
+		<!-- 显示区域 -->
+		<!-- 页面主体 -->
+		<div class="columns is-multiline is-centered is-vcentered is-0">
+			<!-- 左边显示框 -->
+			<div class="column is-two-fifths">
+				<div class="column" id="graph1" style="width: 600px;height:500px;display:none" align="center"></div>
+				<div class="column" id="graph4_left" style="width: 600px;height:500px;display:none" align="center">
+				</div>
+				<div class="column" id="graph5" style="width: 600px;height:500px;display:none" align="center"></div>
+				<div class="column" id="graph6_left" style="width: 600px;height:500px;display:none" align="center">
+				</div>
+				<div class="column" id="graph7_left" style="width: 600px;height:400px;display:none" align="center">
+				</div>
+				<div class="column" id="useless" style="width: 600px;height:100px;display:none" align="center">
+				</div>
+			</div>
+
+			<!-- 用户操作框 -->
+			<div class="column is-one-fifth is-multiline">
+				<div class="columns is-multiline is-vcentered">
+					<!--第一个button，运营商确定关联图模型-->
+					<div class="column  is-full">
+						<button id="button1" class="button is-info  is-rounded is-fullwidth ">
+							<span class="icon">
+								<i class="far fa-hand-point-left"></i>
+							</span>
+							<span>
+								运营商生成关联图模型
+							</span>
+						</button>
+					</div>
+					<!--第二个button，银行确定高价值名单-->
+					<div class="column  is-full">
+						<button id="button2" class="button is-info is-rounded is-fullwidth">
+							<span class="icon">
+								<i class="far fa-hand-point-right"></i>
+							</span>
+							<span>
+								银行生成高价值名单
+							</span>
+						</button>
+					</div>
+					<!--第三个button 根据PSI协议，银行方得到双方数据交集，生成交集向量 -->
+					<div class="column is-full">
+						<button id="button3" class="button is-info is-rounded is-fullwidth" style='height:70px'>
+							<span class="icon">
+								<i class="fas fa-handshake" align="left"></i>
+							</span>
+							<span>
+								双方执行PSI协议</br>银行得到数据交集</br>生成交集向量
+							</span>
+						</button>
+					</div>
+					<!-- 第四个button 银行方对交集向量进行秘密分享 -->
+					<div class="column  is-full">
+						<button id="button4" class="button is-info is-rounded is-fullwidth">
+							<span class="icon">
+								<i class="far fa-hand-point-right"></i>
+							</span>
+							<span>
+								银行方对交集向量秘密分享
+							</span>
+						</button>
+					</div>
+					<!--第五个button，运营商对图进行正则化-->
+					<div class="column  is-full">
+						<button id="button5" class="button is-info is-rounded is-fullwidth">
+							<span class="icon"><i class="far fa-hand-point-left"></i></span>
+							<span>
+								运营商对图进行正则化
+							</span>
+						</button>
+					</div>
+					<!--第六个button，运营商对边权进行秘密分享-->
+					<div class="column  is-full">
+						<button id="button6" class="button is-info is-rounded is-fullwidth">
+							<span class="icon">
+								<i class="far fa-hand-point-left"></i>
+							</span>
+							<span>
+								运营商对边权秘密分享
+							</span>
+						</button>
+					</div>
+					<!--第七个button 双方进行密文下点权秘密分享值更新 -->
+					<div class="column is-full">
+						<button id="button7" class="button is-info is-rounded is-fullwidth">
+							<span class="icon">
+								<i class="fas fa-handshake"></i>
+							</span>
+							<span>
+								双方迭代点权秘密分享值
+							</span>
+						</button>
+					</div>
+					<!--第八个button 银行筛选次高价值节点-->
+					<div class="column  is-full">
+						<button id="button8" class="button is-info is-rounded is-fullwidth" align="center">
+							<span class="icon">
+								<i class="far fa-hand-point-right"></i>
+							</span>
+							<span>
+								银行获得次高价值节点
+							</span>
+						</button>
+					</div>
+					<!--第九个button 双方执行PIR协议，银行获得次高价值节点的信息
+        				<div class="column is-1"><i class="fas fa-handshake"></i></div>
+        				<div class="column is-full">
+          					<button id="button3" class="button is-info is-rounded is-fullwidth" style='height:50px'>
+            				9.双方执行PIR协议</br>银行获得次高价值节点信息</button>
+        				</div>
+        			-->
+				</div>
+			</div>
+			<!-- 右边显示框 -->
+			<div class="column is-two-fifths is-multiline">
+				<div class="column is-two-fifths" id="graph2" style="width: 600px;height:500px;display: none;"></div>
+				<div class="column is-two-fifths" id="graph3" style="width: 600px;height:500px;display: none;"></div>
+				<div class="column is-two-fifths" id="graph4_right" style="width: 600px;height:500px;display:none"
+					align="center">
+				</div>
+				<div class="column is-two-fifths" id="graph6_right" style="width: 600px;height:500px;display:none"
+					align="center">
+				</div>
+				<div class="column is-two-fifths" id="graph7_right" style="width: 600px;height:400px;display:none"
+					align="center">
+				</div>
+				<div class="column is-two-fifths" id="graph7_down" style="width: 600px;height:100px;display:none"
+					align="center">
+				</div>
+				<div class="column is-two-fifths" id="graph8" style="width: 600px;height:300px;display:none"
+					align="center"></div>
+			</div>
+		</div>
+</body>
+
+</html>

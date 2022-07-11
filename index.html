@@ -6,10 +6,11 @@
     <!-- 自定义样式 -->
     <style>
         body {
-            width: 100%;
-            height: 100%;
             background-image: url("../img/background.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
             background-attachment: fixed;
+            height: 100%;
         }
 
         button.class1 {
@@ -55,9 +56,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <!-- 引入bulma样式 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <!-- 引入bootstrap样式 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- 引入 echarts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
     <!-- 引入index.js -->
     <script src="js/index.js" type="text/javascript"></script>
     <!-- meta -->
@@ -70,24 +70,24 @@
     <h1 class="gray_title">隐私计算平台</h1>
     <br>
     <!-- 操作按钮 -->
-    <div class="columns is-desktop">
+    <div id="btns" class="columns is-desktop">
         <div class="column is-1"></div>
         <div class="column is-10">
             <div class="columns">
                 <div class="column is-one-quarter">
-                    <button id="button0"
+                    <button id="btn0"
                         class="button is-vcentered is-focused is-info is-light  is-fullwidth">系统架构</button>
                 </div>
                 <div class="column is-one-quarter">
-                    <button id="button1"
+                    <button id="btn1"
                         class="button is-vcentered is-focused is-info is-light  is-fullwidth">关键技术</button>
                 </div>
                 <div class="column is-one-quarter">
-                    <button id="button2"
+                    <button id="btn2"
                         class="button is-vcentered is-focused is-info is-light  is-fullwidth">平台部署</button>
                 </div>
                 <div class="column is-one-quarter">
-                    <button id="button3"
+                    <button id="btn3"
                         class="button is-vcentered is-focused is-info is-light  is-fullwidth">应用案例</button>
                 </div>
             </div>
@@ -95,7 +95,7 @@
         <div class="column is-1"></div>
     </div>
 
-    <div class="columns is-desktop  is-vcentered">
+    <div id="modules" class="columns is-desktop  is-vcentered">
         <div class="column is-3"></div>
         <div class="column is-6">
             <!-- 系统架构 -->
@@ -146,7 +146,7 @@
                         <h2 class="img_title2">应用案例</h2>
                     </div>
                     <div class="column">
-                        <button id="button4" class="button is-focused is-success is-light ">demo</button>
+                        <button id="btn4" class="button is-focused is-success is-light ">demo</button>
                     </div>
                 </div>
                 <br><br><br><br><br>
@@ -156,6 +156,182 @@
             </div>
         </div>
         <div class="column is-3"></div>
+    </div>
+
+    <div id="demo" style="display:none;">
+        <!--两方提示-->
+        <div class="columns is-centered">
+            <div class="column is-4">
+                <h1 class="label" style="font-size:25px;color: ghostwhite;">运营商</h1>
+            </div>
+            <div class="column is-4"></div>
+            <div class="column is-4">
+                <h1 class="label" style="font-size:25px;color: ghostwhite;">银行</h1>
+            </div>
+        </div>
+
+        <!--用户上传相关文件 -->
+        <div class="columns is-centered">
+            <div class="column is-1"></div>
+            <!--左边文件上传框-->
+            <div id="file1" class="file has-name is-2 is-centered">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta is-info">
+                        上传关联数据图
+                    </span>
+                    <span class="file-name" style="background-color: rgba(199, 235, 233, 0.932);">
+                        graph.txt
+                    </span>
+                </label>
+            </div>
+            <div class="column is-6"></div>
+            <!--右边文件上传框-->
+            <div id="file1" class="file has-name is-2 is-centered">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta is-info">
+                        上传高价值用户
+                    </span>
+                    <span class="file-name" style="background-color: hsla(177, 47%, 85%, 0.932);">
+                        list.txt
+                    </span>
+                </label>
+            </div>
+            <div class="column is-1"></div>
+        </div>
+        <!--改变文件框-->
+
+        <!--显示区域 -->
+        <!--页面主体 -->
+        <div class="columns is-multiline is-centered is-vcentered is-0">
+            <!-- 左边显示框 -->
+            <div class="column is-two-fifths">
+                <div class="column" id="graph1" style="float:right;width:600px;height:500px;display:none"></div>
+                <div class="column" id="graph4_left" style="display:none">
+                </div>
+                <div class="column" id="graph5" style="float:right;width: 600px;height:500px;display:none"></div>
+                <div class="column" id="graph6_left" style="display:none">
+                </div>
+                <div class="column" id="graph7_left" style="display:none">
+                </div>
+                <div class="column" id="useless" style="width: 600px;height:100px;display:none">
+                </div>
+            </div>
+
+            <!-- 用户操作框 -->
+            <div class="column is-one-fifth is-multiline">
+                <div class="columns is-multiline is-vcentered">
+                    <!--第一个button，运营商确定关联图模型-->
+                    <div class="column  is-full">
+                        <button id="button1" class="button is-info  is-rounded is-fullwidth ">
+                            <span class="icon">
+                                <i class="far fa-hand-point-left"></i>
+                            </span>
+                            <span>
+                                运营商生成关联图模型
+                            </span>
+                        </button>
+                    </div>
+                    <!--第二个button，银行确定高价值名单-->
+                    <div class="column  is-full">
+                        <button id="button2" class="button is-info is-rounded is-fullwidth">
+                            <span class="icon">
+                                <i class="far fa-hand-point-right"></i>
+                            </span>
+                            <span>
+                                银行生成高价值名单
+                            </span>
+                        </button>
+                    </div>
+                    <!--第三个button 根据PSI协议，银行方得到双方数据交集，生成交集向量 -->
+                    <div class="column is-full">
+                        <button id="button3" class="button is-info is-rounded is-fullwidth" style='height:70px'>
+                            <span class="icon">
+                                <i class="fas fa-handshake" align="left"></i>
+                            </span>
+                            <span>
+                                双方执行PSI协议</br>银行得到数据交集</br>生成交集向量
+                            </span>
+                        </button>
+                    </div>
+                    <!-- 第四个button 银行方对交集向量进行秘密分享 -->
+                    <div class="column  is-full">
+                        <button id="button4" class="button is-info is-rounded is-fullwidth">
+                            <span class="icon">
+                                <i class="far fa-hand-point-right"></i>
+                            </span>
+                            <span>
+                                银行方对交集向量秘密分享
+                            </span>
+                        </button>
+                    </div>
+                    <!--第五个button，运营商对图进行正则化-->
+                    <div class="column  is-full">
+                        <button id="button5" class="button is-info is-rounded is-fullwidth">
+                            <span class="icon"><i class="far fa-hand-point-left"></i></span>
+                            <span>
+                                运营商对图进行正则化
+                            </span>
+                        </button>
+                    </div>
+                    <!--第六个button，运营商对边权进行秘密分享-->
+                    <div class="column  is-full">
+                        <button id="button6" class="button is-info is-rounded is-fullwidth">
+                            <span class="icon">
+                                <i class="far fa-hand-point-left"></i>
+                            </span>
+                            <span>
+                                运营商对边权秘密分享
+                            </span>
+                        </button>
+                    </div>
+                    <!--第七个button 双方进行密文下点权秘密分享值更新 -->
+                    <div class="column is-full">
+                        <button id="button7" class="button is-info is-rounded is-fullwidth">
+                            <span class="icon">
+                                <i class="fas fa-handshake"></i>
+                            </span>
+                            <span>
+                                双方迭代点权秘密分享值
+                            </span>
+                        </button>
+                    </div>
+                    <!--第八个button 银行筛选次高价值节点-->
+                    <div class="column  is-full">
+                        <button id="button8" class="button is-info is-rounded is-fullwidth" align="center">
+                            <span class="icon">
+                                <i class="far fa-hand-point-right"></i>
+                            </span>
+                            <span>
+                                银行获得次高价值节点
+                            </span>
+                        </button>
+                    </div>
+                    <!--第九个button 双方执行PIR协议，银行获得次高价值节点的信息
+                    <div class="column is-1"><i class="fas fa-handshake"></i></div>
+                    <div class="column is-full">
+                        <button id="button3" class="button is-info is-rounded is-fullwidth" style='height:50px'>
+                            9.双方执行PIR协议</br>银行获得次高价值节点信息</button>
+                </div>
+            -->
+                </div>
+            </div>
+            <!--右边显示框 -->
+            <div class="column is-two-fifths is-multiline">
+                <div class="column" id="graph2" style="width: 600px;height:500px;display: none;"></div>
+                <div class="column" id="graph3" style="width: 600px;height:500px;display: none;"></div>
+                <div class="column" id="graph4_right" style="display:none" align="center">
+                </div>
+                <div class="column" id="graph6_right" style="display:none" align="center">
+                </div>
+                <div class="column" id="graph7_right" style="display:none" align="center">
+                </div>
+                <div class="column" id="graph7_down" style="display:none" align="center">
+                </div>
+                <div class="column" id="graph8" style="width: 600px;height:300px;display:none" align="center"></div>
+            </div>
+        </div>
     </div>
 </body>
 

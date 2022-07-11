@@ -1,4 +1,4 @@
-function func_demo() {
+window.onload = function () {
     var btn1 = document.getElementById('button1');
     var btn2 = document.getElementById('button2');
     var btn3 = document.getElementById('button3');
